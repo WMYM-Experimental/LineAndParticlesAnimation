@@ -3,11 +3,13 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+//some important variable to change a little bit our code 
 let particlesArray;
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
 const particlesMultiplier = 3;
+
 //get mouse position
 let mouse = {
     x: null,
@@ -30,14 +32,14 @@ class Particle {
         this.size = size;
         this.color = color;
     }
-    //crear un punto individual con la funcion arc
+    //draw a dot with arc function
     draw () {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
         ctx.fillStyle = '#99d98c';
         ctx.fill();
     }
-    //verificar kla posicion de la oarticula  y el mousemove
+    //check dots and mouse position
     update () {
         if (this.x > canvas.width || this.x < 0) {
             this.directionX = -this.directionX;
@@ -85,7 +87,7 @@ function init () {
     }
 }
 
-//conect point to pint depending on the distance
+//conect point to point depending on the distance
 function conect () {
     let opacityValue = 1;
     for (let j = 0; j < particlesArray.length; j++) {
@@ -122,7 +124,7 @@ window.addEventListener("mouseout",
     }
 );
 
-//resize event whrn change the size screen
+//resize event when change the screen size
 window.addEventListener("resize",
     function () {
         canvas.width = innerWidth;
