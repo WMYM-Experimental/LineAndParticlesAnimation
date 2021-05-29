@@ -1,5 +1,5 @@
 const canvas = document.getElementById('canvas_1');
-const ctx = canvas.getContext('2d');
+const ctext = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -8,7 +8,7 @@ let particlesArray;
 let mouse = {
     x: null,
     y: null,
-    radius: (canvas.height / 80) * (canvas.width / 80)
+    radius: (canvas.height / 100) * (canvas.width / 100)
 };
 
 window.addEventListener('mousemove',
@@ -20,8 +20,8 @@ window.addEventListener('mousemove',
 //mouse out event
 window.addEventListener("mouseout",
     function () {
-        mouse.x = undefined;
-        mouse.y = undefined;
+        mouse.x = null;
+        mouse.y = null;
     }
 );
 
@@ -43,11 +43,11 @@ class Particle {
         this.size = size;
         this.color = color;
     }
-    //crear un punto individual con la funcion arc
+    //create a single dot with arc function
     draw () {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false); //to making an entire circle
-        ctx.fillStyle = '#ef476f';
-        ctx.fill();
+        ctext.beginPath();
+        ctext.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false); //to making an entire circle
+        ctext.fillStyle = '#ef476f';
+        ctext.fill();
     }
 }
