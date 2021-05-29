@@ -23,7 +23,25 @@ window.addEventListener('mousemove',
         mouse.y = event.y;
     }
 );
-class Particle {
+
+//mouse out event
+window.addEventListener("mouseout",
+    function () {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    }
+);
+
+//resize event when change the screen size
+window.addEventListener("resize",
+    function () {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        mouse.radius = (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
+        init();
+    }
+);
+class Particle { //dots or particles
     constructor (x, y, directionX, directionY, size, color) {
         this.x = x;
         this.y = y;
@@ -116,22 +134,5 @@ function animate () {
     conect();
 }
 
-//mouse out event
-window.addEventListener("mouseout",
-    function () {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    }
-);
-
-//resize event when change the screen size
-window.addEventListener("resize",
-    function () {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        mouse.radius = (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
-        init();
-    }
-);
 init();
 animate();
