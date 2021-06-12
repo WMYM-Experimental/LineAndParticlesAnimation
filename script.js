@@ -8,7 +8,7 @@ let particlesArray;
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
-const particlesMultiplier = 3;
+const particlesMultiplier = 1;
 
 //get mouse position
 let mouse = {
