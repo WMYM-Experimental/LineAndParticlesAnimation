@@ -100,6 +100,10 @@ function getSize(minRangeSize, maxRangeSize) {
   );
 }
 
+function getDirection() {
+  return Math.random() * 5 - 2.5;
+}
+
 function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
@@ -107,8 +111,8 @@ function init () {
         let size = getSize(minRangeSize, maxRangeSize);                  //(Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 5) - 2.5;
-        let directionY = (Math.random() * 5) - 2.5;
+        let directionX = getDirection();
+        let directionY = getDirection();
         let color = '#99d98c';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
