@@ -6,9 +6,9 @@ canvas.height = window.innerHeight;
 //some important variable to change a little bit our code 
 let particlesArray;
 const radiusDivider = 100;
-const windowDivider = 60000;
+const windowDivider = 10000;
 const opacityValueDivider = 25000;
-const particlesMultiplier = 1/2;
+const particlesMultiplier = 1;
 
 //get mouse position
 let mouse = {
