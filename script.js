@@ -9,6 +9,8 @@ const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
 const particlesMultiplier = 1;
+const minRangeSize = 1;
+let maxRangeSize = 4;
 
 //get mouse position
 let mouse = {
@@ -91,11 +93,18 @@ class Particle { //dots or particles
         this.draw();
     }
 }
+
+function getSize(minRangeSize, maxRangeSize) {
+  return (
+    Math.floor(Math.random() * (maxRangeSize - minRangeSize)) + minRangeSize
+  );
+}
+
 function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
     for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-        let size = 2                  //(Math.random() * 2) + 1;
+        let size = getSize(minRangeSize, maxRangeSize);                  //(Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
