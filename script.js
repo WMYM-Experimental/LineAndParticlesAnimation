@@ -95,7 +95,7 @@ function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
     for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-        let size = (Math.random() * 2) + 1;
+        let size = 2                  //(Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
