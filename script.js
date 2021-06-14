@@ -14,8 +14,8 @@ let maxRangeSize = 4;
 
 //get mouse position
 let mouse = {
-    x: null,
-    y: null,
+    x: undefined,
+    y: undefined,
     radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider)
 };
 
