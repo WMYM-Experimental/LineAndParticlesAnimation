@@ -68,15 +68,25 @@ class Particle { //dots or particles
     }
 }
 
+function getSize(minRangeSize, maxRangeSize) {
+  return (
+    Math.floor(Math.random() * (maxRangeSize - minRangeSize)) + minRangeSize
+  );
+}
+
+function getDirection() {
+  return Math.random() * 5 - 2.5;
+}
+
 function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
     for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-        let size = (Math.random() * 5) + 1;
+        let size = getSize(minRangeSize, maxRangeSize);                  //(Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 5) - 2.5;
-        let directionY = (Math.random() * 5) - 2.5;
+        let directionX = getDirection();
+        let directionY = getDirection();
         let color = '#99d98c';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
