@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 
 let particlesArray;
 const minRangeSize = 1;
-const maxRangeSize = 8;
+const maxRangeSize = 4;
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
@@ -48,16 +48,16 @@ class Particle {
 
     if (distance < mouse.radius + this.size) {
       if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-        this.x += 10;
+        this.x += 8;
       }
       if (mouse.x > this.x && this.x > this.size * 10) {
-        this.x -= 10;
+        this.x -= 8;
       }
       if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-        this.y += 10;
+        this.y += 8;
       }
       if (mouse.y > this.y && this.y > this.size * 10) {
-        this.y -= 10;
+        this.y -= 8;
       }
     }
 
@@ -126,7 +126,6 @@ function animate() {
   }
   conect();
 }
-
 /*
 function sleep(milliseconds) {
   var start = new Date().getTime();
