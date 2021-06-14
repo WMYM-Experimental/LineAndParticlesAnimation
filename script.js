@@ -9,6 +9,8 @@ const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
 const particlesMultiplier = 1;
+const minRangeSize = 1;
+let maxRangeSize = 4;
 
 let mouse = {
     x: null,
@@ -16,7 +18,7 @@ let mouse = {
     radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider)
 };
 
-class Particle { //dots or particles
+class Particle { //Particles class
     constructor (x, y, directionX, directionY, size, color) {
         this.x = x;
         this.y = y;
@@ -60,21 +62,23 @@ class Particle { //dots or particles
                 this.y -= 10;
             }
         }
+        
         //move particle
         this.x += this.directionX;
         this.y += this.directionY;
+        
         //draw particlesArray
         this.draw();
     }
 }
 
-function getSize(minRangeSize, maxRangeSize) {
+function setSize(minRangeSize, maxRangeSize) {
   return (
     Math.floor(Math.random() * (maxRangeSize - minRangeSize)) + minRangeSize
   );
 }
 
-function getDirection() {
+function setDirection() {
   return Math.random() * 5 - 2.5;
 }
 
@@ -82,11 +86,11 @@ function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
     for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-        let size = getSize(minRangeSize, maxRangeSize);                  //(Math.random() * 2) + 1;
+        let size = setSize(minRangeSize, maxRangeSize);                  //(Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = getDirection();
-        let directionY = getDirection();
+        let directionX = setDirection();
+        let directionY = setDirection();
         let color = '#99d98c';
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
