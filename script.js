@@ -10,37 +10,12 @@ const windowDivider = 10000;
 const opacityValueDivider = 25000;
 const particlesMultiplier = 1;
 
-//get mouse position
 let mouse = {
     x: null,
     y: null,
     radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider)
 };
 
-window.addEventListener('mousemove',
-    function (event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    }
-);
-
-//mouse out event
-window.addEventListener("mouseout",
-    function () {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    }
-);
-
-//resize event when change the screen size
-window.addEventListener("resize",
-    function () {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        mouse.radius = (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
-        init();
-    }
-);
 class Particle { //dots or particles
     constructor (x, y, directionX, directionY, size, color) {
         this.x = x;
@@ -57,6 +32,7 @@ class Particle { //dots or particles
         ctx.fillStyle = '#99d98c';
         ctx.fill();
     }
+    
     //check dots and mouse position
     update () {
         if (this.x > canvas.width || this.x < 0) {
@@ -91,6 +67,7 @@ class Particle { //dots or particles
         this.draw();
     }
 }
+
 function init () {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
@@ -105,7 +82,7 @@ function init () {
     }
 }
 
-//conect point to point depending on the distance
+//conect point to point depending on the distance for the opacity of the lines
 function conect () {
     let opacityValue = 1;
     for (let j = 0; j < particlesArray.length; j++) {
@@ -135,4 +112,4 @@ function animate () {
 }
 
 init();
-animate();
+animate(); 
