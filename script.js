@@ -19,6 +19,17 @@ let mouse = {
     radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider)
 };
 
+//resize event when change the screen size
+window.addEventListener("resize",
+    function () {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        mouse.radius = (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
+        init();
+    }
+);
+
+//mouse repulsion
 window.addEventListener('mousemove',
     function (event) {
         mouse.x = event.x;
