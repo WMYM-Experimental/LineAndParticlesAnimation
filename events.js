@@ -22,13 +22,13 @@ window.addEventListener("mousemove", function (event) {
 //add more particles with clicks
 window.addEventListener("click", function (event) {
   let size = getSize(minRangeSize, maxRangeSize);
-  let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-  let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+  let x = mouse.x;
+  let y = mouse.y;
   let directionX = getDirection();
   let directionY = getDirection();
   let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   particlesArray.push(
-    new Particle(mouse.x, mouse.y, directionX, directionY, size, color)
+    new Particle(x, y, directionX, directionY, size, color)
   );
 });
 
