@@ -5,17 +5,56 @@ canvas.height = window.innerHeight;
 
 let particlesArray;
 const minRangeSize = 1;
-let maxRangeSize = 6;
+const maxRangeSize = 4;
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
 let particlesMultiplier = 1;
-//get mouse position
+
 let mouse = {
   x: null,
   y: null,
   radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider),
 };
+
+//delete particles with spacebar
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    particlesArray.pop();
+  }
+});
+
+//mouse repulsion
+window.addEventListener("mousemove", function (event) {
+  mouse.x = event.x;
+  mouse.y = event.y;
+});
+
+//add more dots
+window.addEventListener("click", function (event) {
+  let size = getSize(minRangeSize, maxRangeSize);
+  let directionX = getDirection();
+  let directionY = getDirection();
+  let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  particlesArray.push(
+    new Particle(mouse.x, mouse.y, directionX, directionY, size, color)
+  );
+});
+
+//mouse out event
+window.addEventListener("mouseout", function () {
+  mouse.x = undefined;
+  mouse.y = undefined;
+});
+
+//resize event when change the size screen
+window.addEventListener("resize", function () {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  mouse.radius =
+    (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
+  init();
+});
 
 class Particle {
   constructor(x, y, directionX, directionY, size, color) {
@@ -60,23 +99,21 @@ class Particle {
         this.y -= 10;
       }
     }
-
     //move particle
     this.x += this.directionX;
     this.y += this.directionY;
-
     //draw particlesArray
     this.draw();
   }
 }
 
-function getSize(minRangeSize, maxRangeSize) {
+function setSize(minRangeSize, maxRangeSize) {
   return (
     Math.floor(Math.random() * (maxRangeSize - minRangeSize)) + minRangeSize
   );
 }
 
-function getDirection() {
+function setDirection() {
   return Math.random() * 5 - 2.5;
 }
 
@@ -84,11 +121,11 @@ function init() {
   particlesArray = [];
   let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-    let size = getSize(minRangeSize, maxRangeSize);
+    let size = setSize(minRangeSize, maxRangeSize);
     let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
     let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-    let directionX = getDirection();
-    let directionY = getDirection();
+    let directionX = setDirection();
+    let directionY = setDirection();
     let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
     particlesArray.push(
       new Particle(x, y, directionX, directionY, size, color)
@@ -127,13 +164,6 @@ function animate() {
   conect();
 }
 
-window.addEventListener("resize", function () {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-  mouse.radius =
-    (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
-  init();
-});
-
 init();
 animate();
+
