@@ -11,7 +11,6 @@ window.addEventListener("resize", function () {
 window.addEventListener("mouseout", function () {
   mouse.x = null;
   mouse.y = null;
-  mouse.radius = 0;
 });
 
 //mouse repulsion function
