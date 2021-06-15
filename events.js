@@ -14,7 +14,7 @@ window.addEventListener("mouseout", function () {
 });
 
 //mouse repulsion function
-window.addEventListener("mousemove", function (event) {
+document.addEventListener("mousemove", function (event) {
   mouse.x = event.x;
   mouse.y = event.y;
 });
