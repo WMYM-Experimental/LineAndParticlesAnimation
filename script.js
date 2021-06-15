@@ -9,7 +9,7 @@ let maxRangeSize = 6;
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
-let particlesMultiplier = 2;
+let particlesMultiplier = 1;
 
 let mouse = {
   x: null,
