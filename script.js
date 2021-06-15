@@ -129,3 +129,5 @@ function animate() {
 
 init();
 animate();
+alert("Click for adding more particles")
+alert("Spacebar for removing dots")
