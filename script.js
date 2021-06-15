@@ -42,7 +42,6 @@ window.addEventListener("mouseout",
     function () {
         mouse.x = undefined;
         mouse.y = undefined;
-        mouse.radius = undefined;
     }
 );
 
