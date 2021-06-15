@@ -33,6 +33,8 @@ window.addEventListener("mousemove", function (event) {
 //add more dots
 window.addEventListener("click", function (event) {
   let size = setSize(minRangeSize, maxRangeSize);
+  let x = mouse.x;
+  let y = mouse.y;
   let directionX = setDirection();
   let directionY = setDirection();
   let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
