@@ -32,9 +32,9 @@ window.addEventListener("mousemove", function (event) {
 
 //add more dots
 window.addEventListener("click", function (event) {
-  let size = getSize(minRangeSize, maxRangeSize);
-  let directionX = getDirection();
-  let directionY = getDirection();
+  let size = setSize(minRangeSize, maxRangeSize);
+  let directionX = setDirection();
+  let directionY = setDirection();
   let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   particlesArray.push(
     new Particle(mouse.x, mouse.y, directionX, directionY, size, color)
