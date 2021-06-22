@@ -28,16 +28,9 @@ window.addEventListener("click", function (event) {
   let directionY = setDirection();
   let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   particlesArray.push(
-    new Particle(mouse.x, mouse.y, directionX, directionY, size, color)
-  );
-    particlesArray.push(
-    new Particle(mouse.x, mouse.y, -directionX, directionY, size, color)
-  );
-    particlesArray.push(
-    new Particle(mouse.x, mouse.y, directionX, -directionY, size, color)
-  );
-    particlesArray.push(
-    new Particle(mouse.x, mouse.y, -directionX, -directionY, size, color)
+    new Particle(mouse.x, mouse.y, directionX, directionY, size, color),
+    new Particle(-mouse.x, mouse.y, =directionX, directionY, size, color),
+    new Particle(mouse.x, -mouse.y, directionX, -directionY, size, color)
   );
 });
 
