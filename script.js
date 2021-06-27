@@ -79,7 +79,7 @@ function setSize(minRangeSize, maxRangeSize) {
 }
 
 function setDirection() {
-  return Math.random() * 5 - 2.5;
+  return Math.random() * 4 - 3.5;
 }
 
 function init () {
