@@ -10,7 +10,7 @@ This is an image of the final deployment... (i will improve this, cause it has a
 
 There is a link in the description section but i done a QR for you
 
-![](img/readme_imgs/dots_qrcode.jpeg)
+                        ![](img/readme_imgs/dots_qrcode.jpeg)
 
 ## Inspired in particles.js
 
