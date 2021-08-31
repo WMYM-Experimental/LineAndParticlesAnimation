@@ -120,10 +120,10 @@ function conect() {
 //animation loop
 function animate() {
   requestAnimationFrame(animate);
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
-  for (let i = 0; i < particlesArray.length; i++) {
-    particlesArray[i].update();
-  }
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //refresh canvas
+  particlesArray.forEach((ptcl) => {
+    ptcl.update();
+  });
   conect();
 }
 
