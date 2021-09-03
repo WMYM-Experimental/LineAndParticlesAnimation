@@ -30,7 +30,7 @@ class Particle {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    ctx.fillStyle = "#ddd";
     ctx.fill();
   }
   //verificar la posicion de la oarticula  y el mousemove
