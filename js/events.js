@@ -6,30 +6,34 @@ window.addEventListener("mousemove", function (event) {
 
 //mouse out event "no repultion"
 window.addEventListener("mouseout", function () {
-  mouse.x = null;
-  mouse.y = null;
+  mouse.x = undefined;
+  mouse.y = undefined;
 });
 
 //resize event when the screen size changes
 window.addEventListener("resize", function () {
   canvas.width = innerWidth;
   canvas.height = innerHeight;
-  mouse.radius =
-    (canvas.height / radiusDivider) * (canvas.width / radiusDivider);
   init();
 });
 
 //add more particles with clicks 2 each click
 window.addEventListener("click", function (event) {
-  let size = setSize(minRangeSize, maxRangeSize);
-  let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-  let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-  let directionX = setDirection();
-  let directionY = setDirection();
-  let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  mouse.x = event.x;
+  mouse.y = event.y;
+
+  let radius = getRandomNumber(minRangeSize, maxRangeSize);
+
+  let directionX = getRandomNumber(-2, 2);
+  let directionY = getRandomNumber(-2, 2);
+
+  let color = "#fff";
+
   particlesArray.push(
-    new Particle(mouse.x, mouse.y, directionX, directionY, size, color),
-    new Particle(mouse.x, mouse.y, -directionX, -directionY, size, color)
+    new Particle(mouse.x, mouse.y, directionX, directionY, radius, color),
+    new Particle(mouse.x, mouse.y, -directionX, -directionY, radius, color),
+    new Particle(mouse.x, mouse.y, directionX, -directionY, radius, color),
+    new Particle(mouse.x, mouse.y, -directionX, directionY, radius, color)
   );
 });
 
