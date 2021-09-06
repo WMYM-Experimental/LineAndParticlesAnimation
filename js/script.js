@@ -17,6 +17,16 @@ let mouse = {
   radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider),
 };
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function getDistance(x1, y1, x2, y2) {
+  const xDististance = x2 - x1;
+  const yDististance = y2 - y1;
+  return Math.hypot(xDististance, yDististance);
+}
+
 class Particle {
   constructor(x, y, directionX, directionY, size, color) {
     this.x = x;
@@ -30,7 +40,7 @@ class Particle {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    ctx.fillStyle = "#fff"; 
     ctx.fill();
   }
   //verificar la posicion de la oarticula  y el mousemove
@@ -41,10 +51,9 @@ class Particle {
     if (this.y > canvas.height || this.y < 0) {
       this.directionY = -this.directionY;
     }
-    //verificar colision y posicion de mouse
-    let dx = mouse.x - this.x;
-    let dy = mouse.y - this.y;
-    let distance = Math.hypot(dx, dy); //pitagoras theorem used to get yhr distance between particles
+    
+    //verify mouse and particle distance
+    let distance = getDistance(this.x, this.y, mouse.x, mouse.y);
 
     if (distance < mouse.radius + this.size) {
       if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
@@ -70,12 +79,6 @@ class Particle {
   }
 }
 
-function setSize(minRangeSize, maxRangeSize) {
-  return (
-    Math.floor(Math.random() * (maxRangeSize - minRangeSize)) + minRangeSize
-  );
-}
-
 function setDirection() {
   return Math.random() * 5 - 2.5;
 }
@@ -84,12 +87,12 @@ function init() {
   particlesArray = [];
   let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-    let size = setSize(minRangeSize, maxRangeSize);
+    let size = getRandomInt(minRangeSize, maxRangeSize);
     let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
     let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
     let directionX = setDirection();
     let directionY = setDirection();
-    let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    let color = "#fff";
     particlesArray.push(
       new Particle(x, y, directionX, directionY, size, color)
     );
