@@ -7,10 +7,10 @@ canvas.height = window.innerHeight;
 let particlesArray;
 
 const minRangeSize = 1;
-let maxRangeSize = 6;
+let maxRangeSize = 5;
 
-const radiusDivider = 100;
 const windowDivider = 10000;
+
 const opacityValueDivider = 25000;
 
 let particlesMultiplier = 1; //increase number of particles
@@ -18,7 +18,7 @@ let particlesMultiplier = 1; //increase number of particles
 let mouse = {
   x: undefined,
   y: undefined,
-  radius: (canvas.height / radiusDivider) * (canvas.width / radiusDivider),
+  radius: 100,
 };
 
 function getRandomInt(min, max) {
@@ -26,7 +26,7 @@ function getRandomInt(min, max) {
 }
 
 function getRandomNumber(min, max) {
-  return Math.random() * (max - min + 1) + min);
+  return Math.random() * (max - min + 1) + min;
 }
 
 function getDistance(x1, y1, x2, y2) {
@@ -36,23 +36,23 @@ function getDistance(x1, y1, x2, y2) {
 }
 
 class Particle {
-  constructor(x, y, directionX, directionY, size, color) {
+  constructor(x, y, directionX, directionY, radius, color) {
     this.x = x;
     this.y = y;
     this.directionX = directionX;
     this.directionY = directionY;
-    this.size = size;
+    this.radius = radius;
     this.color = color;
   }
-  
+
   //draw a single particle
   draw() {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "#fff"; 
+    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = "#fff";
     ctx.fill();
   }
-  
+
   //collition detection
   update() {
     if (this.x > canvas.width || this.x < 0) {
@@ -61,21 +61,21 @@ class Particle {
     if (this.y > canvas.height || this.y < 0) {
       this.directionY = -this.directionY;
     }
-    
+
     //verify mouse and particle distance
     let distance = getDistance(this.x, this.y, mouse.x, mouse.y);
 
-    if (distance < mouse.radius + this.size) {
-      if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+    if (distance < mouse.radius + this.radius) {
+      if (mouse.x < this.x && this.x < canvas.width - this.radius * 10) {
         this.x += 10;
       }
-      if (mouse.x > this.x && this.x > this.size * 10) {
+      if (mouse.x > this.x && this.x > this.radius * 10) {
         this.x -= 10;
       }
-      if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+      if (mouse.y < this.y && this.y < canvas.height - this.radius * 10) {
         this.y += 10;
       }
-      if (mouse.y > this.y && this.y > this.size * 10) {
+      if (mouse.y > this.y && this.y > this.radius * 10) {
         this.y -= 10;
       }
     }
@@ -91,16 +91,22 @@ class Particle {
 
 function init() {
   particlesArray = [];
+
   let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
+
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
-    let size = getRandomInt(minRangeSize, maxRangeSize);
-    let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;  //need to change this
-    let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2; //need to change this
-    let directionX = getRandomNumber(-2.5,2.5);
-    let directionY = getRandomNumber(-2.5,2.5);
+    let radius = getRandomInt(minRangeSize, maxRangeSize);
+
+    let x = getRandomNumber(radius, canvas.width - radius); //need to change this
+    let y = getRandomNumber(radius, canvas.height - radius); //need to change this
+
+    let directionX = getRandomNumber(-2, 2);
+    let directionY = getRandomNumber(-2, 2);
+
     let color = "#fff";
+
     particlesArray.push(
-      new Particle(x, y, directionX, directionY, size, color)
+      new Particle(x, y, directionX, directionY, radius, color)
     );
   }
 }
@@ -110,15 +116,15 @@ function conect() {
   let opacityValue = 1;
   for (let j = 0; j < particlesArray.length; j++) {
     for (let k = j; k < particlesArray.length; k++) {
-      
       let distance =
         Math.pow(particlesArray[j].x - particlesArray[k].x, 2) +
         Math.pow(particlesArray[j].y - particlesArray[k].y, 2);
-      
-      if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+
+      if (distance < Math.pow(2000 / 7, 2)) {
+        //the number seven here was consider on try and error
         opacityValue = 1 - distance / opacityValueDivider;
         ctx.strokeStyle = "rgba(226, 236, 233," + opacityValue + ")";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 0.8;
         ctx.beginPath();
         ctx.moveTo(particlesArray[j].x, particlesArray[j].y);
         ctx.lineTo(particlesArray[k].x, particlesArray[k].y);
