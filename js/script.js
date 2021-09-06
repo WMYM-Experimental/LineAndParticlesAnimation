@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particlesArray;
+let particlesArray = [];
 
 const minRangeSize = 1;
 let maxRangeSize = 5;
