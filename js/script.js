@@ -1,15 +1,19 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let particlesArray;
+
 const minRangeSize = 1;
 let maxRangeSize = 6;
+
 const radiusDivider = 100;
 const windowDivider = 10000;
 const opacityValueDivider = 25000;
-let particlesMultiplier = 1;
+
+let particlesMultiplier = 1; //increase number of particles
 
 let mouse = {
   x: undefined,
@@ -40,14 +44,16 @@ class Particle {
     this.size = size;
     this.color = color;
   }
-  //crear un punto individual con la funcion arc
+  
+  //draw a single particle
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
     ctx.fillStyle = "#fff"; 
     ctx.fill();
   }
-  //verificar la posicion de la oarticula  y el mousemove
+  
+  //collition detection
   update() {
     if (this.x > canvas.width || this.x < 0) {
       this.directionX = -this.directionX;
@@ -88,8 +94,8 @@ function init() {
   let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
     let size = getRandomInt(minRangeSize, maxRangeSize);
-    let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-    let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+    let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;  //need to change this
+    let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2; //need to change this
     let directionX = getRandomNumber(-2.5,2.5);
     let directionY = getRandomNumber(-2.5,2.5);
     let color = "#fff";
@@ -99,14 +105,16 @@ function init() {
   }
 }
 
-//conect point to pint depending on the distance
+//conect point to point depending on the distance
 function conect() {
   let opacityValue = 1;
   for (let j = 0; j < particlesArray.length; j++) {
     for (let k = j; k < particlesArray.length; k++) {
+      
       let distance =
         Math.pow(particlesArray[j].x - particlesArray[k].x, 2) +
         Math.pow(particlesArray[j].y - particlesArray[k].y, 2);
+      
       if (distance < (canvas.width / 7) * (canvas.height / 7)) {
         opacityValue = 1 - distance / opacityValueDivider;
         ctx.strokeStyle = "rgba(226, 236, 233," + opacityValue + ")";
