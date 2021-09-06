@@ -4,7 +4,7 @@ Dots connected by lines animation using vanilla javascript with canvas html.
 
 ## Sample:
 
-This is an image of the final deployment... (i will improve this, cause it has a few bugs yet)
+This is an image of the final deployment.
 
 ![](img/readme_imgs/sample.jpeg)
 
