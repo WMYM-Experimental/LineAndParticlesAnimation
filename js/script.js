@@ -21,6 +21,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min + 1) + min);
+}
+
 function getDistance(x1, y1, x2, y2) {
   const xDististance = x2 - x1;
   const yDististance = y2 - y1;
@@ -79,10 +83,6 @@ class Particle {
   }
 }
 
-function setDirection() {
-  return Math.random() * 5 - 2.5;
-}
-
 function init() {
   particlesArray = [];
   let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
@@ -90,8 +90,8 @@ function init() {
     let size = getRandomInt(minRangeSize, maxRangeSize);
     let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
     let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-    let directionX = setDirection();
-    let directionY = setDirection();
+    let directionX = getRandomNumber(-2.5,2.5);
+    let directionY = getRandomNumber(-2.5,2.5);
     let color = "#fff";
     particlesArray.push(
       new Particle(x, y, directionX, directionY, size, color)
