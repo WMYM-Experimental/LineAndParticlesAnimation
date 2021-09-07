@@ -36,8 +36,6 @@ window.addEventListener("click", function (event) {
       new Particle(mouse.x, mouse.y, directionX, -directionY, radius, color),
       new Particle(mouse.x, mouse.y, -directionX, directionY, radius, color)
     );
-  }else{
-    continue
   }
 });
 
