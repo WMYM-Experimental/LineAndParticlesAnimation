@@ -5,6 +5,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let particlesArray;
+let numberOfParticles = 0;
 
 const minRangeSize = 1;
 let maxRangeSize = 5;
@@ -90,9 +91,9 @@ class Particle {
 }
 
 function init() {
+  
   particlesArray = [];
-
-  let numberOfParticles = (canvas.height * canvas.width) / windowDivider;
+  numberOfParticles = (canvas.height * canvas.width) / windowDivider;
 
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
     let radius = getRandomInt(minRangeSize, maxRangeSize);
