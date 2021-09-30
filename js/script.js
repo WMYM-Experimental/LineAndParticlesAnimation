@@ -92,6 +92,7 @@ class Particle {
 
 function init() {
   particlesArray = [];
+  //numberOfParticles = ((canvas.height * canvas.width) / windowDivider) > 2 ? 2 : numberOfParticles;
   numberOfParticles = (canvas.height * canvas.width) / windowDivider;
 
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
