@@ -15,3 +15,4 @@ There is a link in the description section but i done a QR for you
 ## Inspired in particles.js
 
 Also credit to all the people who have done similar things like this.
+There is one only thing i want to change form this it is the repulsion effect, but this will be possible in the future.
