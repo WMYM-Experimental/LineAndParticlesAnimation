@@ -18,9 +18,7 @@ window.addEventListener("resize", function () {
 });
 
 //add more particles with clicks 2 each click
-
 window.addEventListener("click", function (event) {
-  if (particlesArray.length <= numberOfParticles * 2) {
     mouse.x = event.x;
     mouse.y = event.y;
 
@@ -37,9 +35,6 @@ window.addEventListener("click", function (event) {
       new Particle(mouse.x, mouse.y, directionX, -directionY, radius, color),
       new Particle(mouse.x, mouse.y, -directionX, directionY, radius, color)
     );
-  }else{
-    continue
-  }
 });
 
 //delete particles with space bar

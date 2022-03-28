@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particlesArray;
+let particlesArray = [];
 let numberOfParticles = 0;
 
 const minRangeSize = 1;
@@ -91,8 +91,8 @@ class Particle {
 }
 
 function init() {
-  
   particlesArray = [];
+  //numberOfParticles = ((canvas.height * canvas.width) / windowDivider) > 2 ? 2 : numberOfParticles;
   numberOfParticles = (canvas.height * canvas.width) / windowDivider;
 
   for (let i = 0; i < numberOfParticles * particlesMultiplier; i++) {
